@@ -1,12 +1,12 @@
 import type { FC, ReactNode } from "react";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
-import "./globals.css";
-import ThemeProvider from "contexts/Theme";
-import { cn } from "lib/utils";
-import { Toaster } from "components/ui/sonner";
+import "@/app/globals.css";
+import ThemeProvider from "@/contexts/Theme";
+import { cn } from "@/lib/utils";
+import { Toaster } from "@/components/ui/sonner";
 import { SessionProvider } from "next-auth/react";
-import { auth } from "auth";
+import { auth } from "@/auth";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 

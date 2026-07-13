@@ -1,5 +1,4 @@
 import type { FC, ReactNode } from "react";
-import Navbar from "@/components/navigation/navbar";
 import Image from "next/image";
 import SocialAuthForm from "@/components/forms/SocialAuthForm";
 
