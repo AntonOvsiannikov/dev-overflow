@@ -9,7 +9,7 @@ const Home = async () => {
     <>
       <h1 className="h1-bold">Welcome to DevOverflow</h1>
       <form
-        className="px-10 pt-[100px]"
+        className="px-10 pt-25"
         action={async () => {
           "use server";
           await signOut({ redirectTo: ROUTES.SIGN_IN });
