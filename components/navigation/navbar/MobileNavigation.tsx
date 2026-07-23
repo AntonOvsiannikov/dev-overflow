@@ -1,3 +1,4 @@
+import type { FC } from "react";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import ROUTES from "@/const/routes";
@@ -29,19 +30,20 @@ const MobileNavigation = () => {
 
           <div className="flex flex-col gap-3">
             <SheetClose asChild>
-              <Link href={ROUTES.SIGN_IN}>
-                <Button className="small-medium btn-secondary min-h-10 w-full rounded-lg px-4 py-3 shadow-none">
+              <Button className="small-medium btn-secondary min-h-10 w-full rounded-lg px-4 py-3 shadow-none" asChild>
+                <Link href={ROUTES.SIGN_IN}>
                   <span className="primary-text-gradient">Log In</span>
-                </Button>
-              </Link>
+                </Link>
+              </Button>
             </SheetClose>
 
             <SheetClose asChild>
-              <Link href={ROUTES.SIGN_UP}>
-                <Button className="small-medium light-border-2 btn-tertiary text-dark400_light900 min-h-10 w-full rounded-lg border px-4 py-3 shadow-none">
-                  Sign Up
-                </Button>
-              </Link>
+              <Button
+                className="small-medium light-border-2 btn-tertiary text-dark400_light900 min-h-10 w-full rounded-lg border px-4 py-3 shadow-none"
+                asChild
+              >
+                <Link href={ROUTES.SIGN_UP}>Sign Up</Link>
+              </Button>
             </SheetClose>
           </div>
         </div>
