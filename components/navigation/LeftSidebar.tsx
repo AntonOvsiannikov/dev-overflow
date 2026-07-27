@@ -6,7 +6,7 @@ import Image from "next/image";
 
 const LeftSidebar = () => {
   return (
-    <section className="custom-scollbar background-light900_dark200 light-border shadow-light-300 sticky top-0 left-0 flex h-screen w-fit flex-col justify-between overflow-y-auto border-r px-6 pt-37 pb-8 max-sm:hidden lg:w-[266px] dark:shadow-none">
+    <section className="custom-scollbar background-light900_dark200 light-border shadow-light-300 sticky top-0 left-0 flex h-screen w-fit flex-col justify-between overflow-y-auto border-r px-6 pt-36 pb-8 max-sm:hidden lg:w-[266px] dark:shadow-none">
       <div className="flex flex-1 flex-col gap-6">
         <NavLinks />
       </div>
