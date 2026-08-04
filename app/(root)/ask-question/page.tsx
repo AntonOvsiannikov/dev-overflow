@@ -1,7 +1,12 @@
+import QuestionForm from "@/components/forms/QuestitonForm";
+
 const AskQuestion = () => {
   return (
     <div>
-      <h1>Ask Question</h1>
+      <h1 className="h1-bold text-dark100_light900">Ask Question</h1>
+      <div className="mt-9">
+        <QuestionForm />
+      </div>
     </div>
   );
 };
