@@ -20,3 +20,20 @@ export interface Question {
   views: number;
   answers: number;
 }
+
+interface ActionError {
+  message: string;
+  details?: Record<string, string[]>;
+}
+interface ActionRequest<T = null> {
+  success: boolean;
+  data?: T;
+  error?: ActionError;
+  status?: number;
+}
+
+type SuccessResponse<T = null> = ActionRequest<T> & { success: true };
+type ErrorResponse = ActionRequest<undefined> & { success: false };
+
+type APIErrorResponse = NextResponse<ErrorResponse>;
+type APIResponse<T = null> = NextResponse<SuccessResponse<T> | ErrorResponse>;
