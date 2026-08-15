@@ -36,14 +36,9 @@ export async function PUT(request: NextRequest, { params }: Params) {
   try {
     await dbConnect();
     const body = await request.json();
-    const validatedData = UserSchema.safeParse(body);
+    const validatedData = UserSchema.partial().parse(body);
 
-    if (!validatedData.success) {
-      const error = z.flattenError(validatedData.error);
-      throw new ValidationError(error.fieldErrors);
-    }
-
-    const user = await User.findByIdAndUpdate(id, validatedData.data, { new: true });
+    const user = await User.findByIdAndUpdate(id, validatedData, { new: true });
     if (!user) throw new NotFoundError("User not found");
 
     return NextResponse.json({ success: true, data: user }, { status: 200 });
