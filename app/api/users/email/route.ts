@@ -4,7 +4,6 @@ import dbConnect from "@/lib/mongoose";
 import User from "@/database/user.model";
 import { NextResponse } from "next/server";
 import handleError from "@/lib/handlers/error";
-import { APIErrorResponse } from "@/types/global";
 import { UserSchema } from "@/lib/validations";
 import { z } from "zod";
 

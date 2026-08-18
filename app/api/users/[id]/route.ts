@@ -2,10 +2,8 @@ import dbConnect from "@/lib/mongoose";
 import User from "@/database/user.model";
 import { NextRequest, NextResponse } from "next/server";
 import handleError from "@/lib/handlers/error";
-import { NotFoundError, ValidationError } from "@/lib/http-errors";
-import { APIErrorResponse } from "@/types/global";
+import { NotFoundError } from "@/lib/http-errors";
 import { UserSchema } from "@/lib/validations";
-import { z } from "zod";
 
 interface Params {
   params: Promise<{

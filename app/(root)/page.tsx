@@ -6,6 +6,7 @@ import LocalSearch from "@/components/search/LocalSearch";
 import HomeFilter from "@/components/filters/HomeFilter";
 import QuestionCard from "@/components/cards/QuestionCard";
 import handleError from "@/lib/handlers/error";
+import { api } from "@/lib/api";
 
 const questions = [
   {
@@ -72,7 +73,7 @@ const questions = [
 
 const test = async () => {
   try {
-    throw new Error("Test error");
+    return await api.users.get();
   } catch (error) {
     return handleError(error);
   }

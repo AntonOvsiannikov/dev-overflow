@@ -3,7 +3,6 @@ import Account from "@/database/account.model";
 import { NextRequest, NextResponse } from "next/server";
 import handleError from "@/lib/handlers/error";
 import { NotFoundError, ValidationError } from "@/lib/http-errors";
-import { APIErrorResponse } from "@/types/global";
 import { AccountSchema } from "@/lib/validations";
 import { z } from "zod";
 

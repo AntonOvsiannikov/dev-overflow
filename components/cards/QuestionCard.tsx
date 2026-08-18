@@ -1,5 +1,4 @@
 import type { FC } from "react";
-import type { Question } from "@/types/global";
 import { getTimeStamp } from "@/lib/utils";
 import Link from "next/link";
 import ROUTES from "@/const/routes";
