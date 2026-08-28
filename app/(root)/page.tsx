@@ -5,7 +5,6 @@ import ROUTES from "@/const/routes";
 import LocalSearch from "@/components/search/LocalSearch";
 import HomeFilter from "@/components/filters/HomeFilter";
 import QuestionCard from "@/components/cards/QuestionCard";
-import { auth } from "@/auth";
 
 const questions = [
   {
@@ -74,8 +73,6 @@ interface SearchParams {
   searchParams: Promise<{ [key: string]: string }>;
 }
 const Home: FC<SearchParams> = async ({ searchParams }) => {
-  const session = await auth();
-  console.log(session);
   const { query = "", filter = "" } = await searchParams;
   const filteredQuestions = questions.filter((question) => {
     const matchQuery = question.title.toLowerCase().includes(query.toLowerCase());

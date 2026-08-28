@@ -12,7 +12,7 @@ type ActionOptions<T> = {
   authorize?: boolean;
 };
 
-async function action<T>({ params, schema, authorize = true }: ActionOptions<T>) {
+async function action<T>({ params, schema, authorize = false }: ActionOptions<T>) {
   if (schema && params) {
     try {
       schema.parse(params);
@@ -31,7 +31,7 @@ async function action<T>({ params, schema, authorize = true }: ActionOptions<T>)
     session = await auth();
 
     if (!session) {
-      return new UnauthorizedError("Unauthorized");
+      return new UnauthorizedError();
     }
   }
 

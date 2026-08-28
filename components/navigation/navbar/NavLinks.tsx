@@ -6,22 +6,21 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { SheetClose } from "@/components/ui/sheet";
-import ROUTES from "@/const/routes";
 
 interface NavLinksProps {
   isMobileNav?: boolean;
+  userId?: string;
 }
 
-const NavLinks: FC<NavLinksProps> = ({ isMobileNav }) => {
+const NavLinks: FC<NavLinksProps> = ({ isMobileNav, userId }) => {
   const pathname = usePathname();
-  const userId = 1;
 
   return (
     <>
       {sidebarLinks.map((item) => {
         const isActive = (pathname.includes(item.route) && item.route.length > 1) || pathname === item.route;
 
-        if (item.route === ROUTES.PROFILE) {
+        if (item.route === "/profile") {
           if (userId) item.route = `${item.route}/${userId}`;
           else return null;
         }

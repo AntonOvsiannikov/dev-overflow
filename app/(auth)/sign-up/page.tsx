@@ -15,7 +15,7 @@ const SignUp = () => {
   return (
     <div>
       <AuthForm
-        formType="SIGN_IN"
+        formType="SIGN_UP"
         schema={SignUpSchema}
         defaultValues={defaultValues}
         onSubmit={signUpWithCredentials}
