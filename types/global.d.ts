@@ -1,39 +1,42 @@
 interface Tag {
-  id: string;
+  _id: string;
   name: string;
 }
 
 interface Author {
-  id: string;
+  _id: string;
   name: string;
   image: string;
 }
 
 interface Question {
-  id: string;
+  _id: string;
   title: string;
-  description: string;
   tags: Tag[];
   author: Author;
-  createdAt: Date;
   upvotes: number;
-  views: number;
   answers: number;
+  views: number;
+  createdAt: Date;
 }
 
-interface ActionError {
-  message: string;
-  details?: Record<string, string[]>;
-}
-interface ActionResponse<T = null> {
+type ActionResponse<T = null> = {
   success: boolean;
   data?: T;
-  error?: ActionError;
+  error?: {
+    message: string;
+    details?: Record<string, string[]>;
+  };
   status?: number;
-}
+};
 
 type SuccessResponse<T = null> = ActionResponse<T> & { success: true };
 type ErrorResponse = ActionResponse<undefined> & { success: false };
 
 type APIErrorResponse = NextResponse<ErrorResponse>;
 type APIResponse<T = null> = NextResponse<SuccessResponse<T> | ErrorResponse>;
+
+interface RouteParams {
+  params: Promise<Record<string, string>>;
+  searchParams: Promise<Record<string, string>>;
+}

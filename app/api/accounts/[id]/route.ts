@@ -6,13 +6,7 @@ import { NotFoundError, ValidationError } from "@/lib/http-errors";
 import { AccountSchema } from "@/lib/validations";
 import { z } from "zod";
 
-interface Params {
-  params: Promise<{
-    id: string;
-  }>;
-}
-
-export async function GET(_: Request, { params }: Params) {
+export async function GET(_: Request, { params }: RouteParams) {
   const { id } = await params;
   if (!id) throw new NotFoundError("Account not found");
 
@@ -28,7 +22,7 @@ export async function GET(_: Request, { params }: Params) {
   }
 }
 
-export async function PUT(request: NextRequest, { params }: Params) {
+export async function PUT(request: NextRequest, { params }: RouteParams) {
   const { id } = await params;
   if (!id) throw new NotFoundError("Account not found");
 
@@ -51,7 +45,7 @@ export async function PUT(request: NextRequest, { params }: Params) {
   }
 }
 
-export async function DELETE(_: NextRequest, { params }: Params) {
+export async function DELETE(_: NextRequest, { params }: RouteParams) {
   const { id } = await params;
   if (!id) throw new NotFoundError("Account not found");
 

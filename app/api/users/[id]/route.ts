@@ -5,13 +5,7 @@ import handleError from "@/lib/handlers/error";
 import { NotFoundError } from "@/lib/http-errors";
 import { UserSchema } from "@/lib/validations";
 
-interface Params {
-  params: Promise<{
-    id: string;
-  }>;
-}
-
-export async function GET(_: Request, { params }: Params) {
+export async function GET(_: Request, { params }: RouteParams) {
   const { id } = await params;
   if (!id) throw new NotFoundError("User not found");
 
@@ -27,7 +21,7 @@ export async function GET(_: Request, { params }: Params) {
   }
 }
 
-export async function PUT(request: NextRequest, { params }: Params) {
+export async function PUT(request: NextRequest, { params }: RouteParams) {
   const { id } = await params;
   if (!id) throw new NotFoundError("User not found");
 
@@ -45,7 +39,7 @@ export async function PUT(request: NextRequest, { params }: Params) {
   }
 }
 
-export async function DELETE(_: NextRequest, { params }: Params) {
+export async function DELETE(_: NextRequest, { params }: RouteParams) {
   const { id } = await params;
   if (!id) throw new NotFoundError("User not found");
 

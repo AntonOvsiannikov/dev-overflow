@@ -3,7 +3,6 @@ import Link from "next/link";
 import ROUTES from "@/const/routes";
 import { Avatar, AvatarFallback } from "./ui/avatar";
 import Image from "next/image";
-import { UserIcon } from "lucide-react";
 
 interface UserAvatarProps {
   id: string;
