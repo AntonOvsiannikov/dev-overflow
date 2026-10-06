@@ -5,76 +5,23 @@ import ROUTES from "@/const/routes";
 import LocalSearch from "@/components/search/LocalSearch";
 import HomeFilter from "@/components/filters/HomeFilter";
 import QuestionCard from "@/components/cards/QuestionCard";
-
-const questions: Question[] = [
-  {
-    _id: "1",
-    title: "How to use React hooks?",
-    tags: [
-      { _id: "1", name: "react" },
-      { _id: "2", name: "javascript" },
-      { _id: "3", name: "next.js" },
-    ],
-    author: { _id: "1", name: "John Doe", image: "https://github.com/shadcn.png" },
-    upvotes: 10,
-    views: 100,
-    answers: 10,
-    createdAt: new Date(),
-  },
-  {
-    _id: "2",
-    title: "How to use Next.js?",
-    tags: [
-      { _id: "1", name: "next.js" },
-      { _id: "2", name: "javascript" },
-      { _id: "3", name: "react" },
-    ],
-    author: { _id: "1", name: "John Doe", image: "https://github.com/shadcn.png" },
-    upvotes: 1,
-    views: 20,
-    answers: 2,
-    createdAt: new Date(),
-  },
-  {
-    _id: "3",
-    title: "How to use Tailwind CSS?",
-    tags: [
-      { _id: "1", name: "javascript" },
-      { _id: "2", name: "react" },
-      { _id: "3", name: "next.js" },
-    ],
-    author: { _id: "1", name: "John Doe", image: "https://github.com/shadcn.png" },
-    upvotes: 3,
-    views: 30,
-    answers: 3,
-    createdAt: new Date(),
-  },
-  {
-    _id: "4",
-    title: "How to use TypeScript?",
-    tags: [
-      { _id: "1", name: "javascript" },
-      { _id: "2", name: "react" },
-      { _id: "3", name: "next.js" },
-    ],
-    author: { _id: "1", name: "John Doe", image: "https://github.com/shadcn.png" },
-    upvotes: 4,
-    views: 40,
-    answers: 4,
-    createdAt: new Date(),
-  },
-];
-
+import { getQuestions } from "@/lib/actions/question.action";
+import DataRenderer from "@/components/DataRenderer";
+import { EMPTY_QUESTION } from "@/const/states";
 interface SearchParams {
   searchParams: Promise<{ [key: string]: string }>;
 }
 const Home: FC<SearchParams> = async ({ searchParams }) => {
-  const { query = "", filter = "" } = await searchParams;
-  const filteredQuestions = questions.filter((question) => {
-    const matchQuery = question.title.toLowerCase().includes(query.toLowerCase());
-    const matchFilter = filter ? question.tags[0].name.toLowerCase() === filter.toLowerCase() : true;
-    return matchQuery && matchFilter;
+  const { page, pageSize, query, filter } = await searchParams;
+
+  const { success, data, error } = await getQuestions({
+    page: Number(page) || 1,
+    pageSize: Number(pageSize) || 10,
+    query: query || "",
+    filter: filter || "",
   });
+
+  const { questions } = data || {};
 
   return (
     <>
@@ -88,11 +35,19 @@ const Home: FC<SearchParams> = async ({ searchParams }) => {
         <LocalSearch route="/" imgSrc="/icons/search.svg" placeholder="Search questions..." otherClasses="flex-1" />
       </section>
       <HomeFilter />
-      <div className="mt-10 flex w-full flex-col gap-6">
-        {filteredQuestions.map((question) => (
-          <QuestionCard key={question._id} question={question} />
-        ))}
-      </div>
+      <DataRenderer
+        success={success}
+        error={error}
+        data={questions}
+        empty={EMPTY_QUESTION}
+        render={(questions) => (
+          <div className="mt-10 flex w-full flex-col gap-6">
+            {questions.map((question) => (
+              <QuestionCard key={question._id} question={question} />
+            ))}
+          </div>
+        )}
+      />
     </>
   );
 };

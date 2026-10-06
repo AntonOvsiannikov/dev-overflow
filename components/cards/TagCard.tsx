@@ -48,7 +48,7 @@ const TagCard: FC<TagCardProps> = ({ id, name, questions, showCount, compact, re
         {Content}
       </button>
     ) : (
-      <Link href={ROUTES.TAGS(id)} className="flex justify-between gap-2">
+      <Link href={ROUTES.TAG(id)} className="flex justify-between gap-2">
         {Content}
       </Link>
     );
