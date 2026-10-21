@@ -42,7 +42,7 @@ const LocalSearch: FC<LocalSearchProps> = ({ route, imgSrc, placeholder, iconPos
     }, 1000);
 
     return () => clearTimeout(delayDebounceFn);
-  }, [searchQuery, router, route, pathname]);
+  }, [searchQuery, router, route, pathname, searchParams]);
 
   return (
     <div

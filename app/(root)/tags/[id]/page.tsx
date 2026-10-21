@@ -1,0 +1,50 @@
+import { getTagQuestions } from "@/lib/actions/tag.action";
+import ROUTES from "@/const/routes";
+import LocalSearch from "@/components/search/LocalSearch";
+import DataRenderer from "@/components/DataRenderer";
+import { EMPTY_QUESTION } from "@/const/states";
+import QuestionCard from "@/components/cards/QuestionCard";
+
+const Tag = async ({ params, searchParams }: RouteParams) => {
+  const { id } = await params;
+  const { page, pageSize, query } = await searchParams;
+  const { data, success, error } = await getTagQuestions({
+    tagId: id,
+    page: Number(page) || 1,
+    pageSize: Number(pageSize) || 10,
+    query,
+  });
+
+  const { tag, questions } = data || {};
+
+  return (
+    <>
+      <section className="flex w-full flex-col-reverse justify-between sm:flex-row sm:items-center">
+        <h1 className="h1-bold text-dark100_light900">{tag?.name}</h1>
+      </section>
+      <section className="mt-11">
+        <LocalSearch
+          route={ROUTES.TAGS}
+          imgSrc="/icons/search.svg"
+          placeholder="Search questions..."
+          otherClasses="flex-1"
+        />
+      </section>
+      <DataRenderer
+        success={success}
+        error={error}
+        data={questions}
+        empty={EMPTY_QUESTION}
+        render={(questions) => (
+          <div className="mt-10 flex w-full flex-col gap-6">
+            {questions.map((question) => (
+              <QuestionCard key={question._id} question={question} />
+            ))}
+          </div>
+        )}
+      />
+    </>
+  );
+};
+
+export default Tag;
