@@ -33,21 +33,31 @@ export const getTimeStamp = (createdAt: Date) => {
   const secondsAgo = Math.floor((now.getTime() - date.getTime()) / 1000);
 
   const units = [
-    { name: "second", value: 1 },
-    { name: "minute", value: 60 },
-    { name: "hour", value: 3600 },
-    { name: "day", value: 86400 },
-    { name: "week", value: 604800 },
-    { name: "month", value: 2629746 },
-    { name: "year", value: 31556952 },
+    { label: "year", seconds: 31536000 },
+    { label: "month", seconds: 2592000 },
+    { label: "week", seconds: 604800 },
+    { label: "day", seconds: 86400 },
+    { label: "hour", seconds: 3600 },
+    { label: "minute", seconds: 60 },
+    { label: "second", seconds: 1 },
   ];
 
   for (const unit of units) {
-    const interval = Math.floor(secondsAgo / unit.value);
+    const interval = Math.floor(secondsAgo / unit.seconds);
     if (interval >= 1) {
-      return `${interval} ${unit.name}${interval > 1 ? "s" : ""} ago`;
+      return `${interval} ${unit.label}${interval > 1 ? "s" : ""} ago`;
     }
   }
 
   return "just now";
+};
+
+export const formatNumber = (number: number) => {
+  if (number >= 1000000) {
+    return `${(number / 1000000).toFixed(1)}M`;
+  }
+  if (number >= 1000) {
+    return `${(number / 1000).toFixed(1)}K`;
+  }
+  return number.toString();
 };

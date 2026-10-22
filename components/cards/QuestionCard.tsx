@@ -25,7 +25,7 @@ const QuestionCard: FC<QuestionCardProps> = ({ question }) => {
       </div>
       <div className="mt-3.5 flex w-full flex-wrap gap-2">
         {tags.map((tag) => (
-          <TagCard key={tag._id} id={tag._id} name={tag.name} compact />
+          <TagCard key={tag._id} _id={tag._id} name={tag.name} compact />
         ))}
       </div>
       <div className="flex-between mt-6 w-full flex-wrap gap-3">
@@ -37,6 +37,7 @@ const QuestionCard: FC<QuestionCardProps> = ({ question }) => {
           href={ROUTES.PROFILE(author._id)}
           textStyles="body-medium text_dark400_light700"
           isAuthor
+          titleStyles="max-sm:hidden"
         />
 
         <div className="flex items-center gap-3 max-sm:flex-wrap max-sm:justify-start">

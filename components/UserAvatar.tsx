@@ -3,15 +3,17 @@ import Link from "next/link";
 import ROUTES from "@/const/routes";
 import { Avatar, AvatarFallback } from "./ui/avatar";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 interface UserAvatarProps {
   id: string;
   name: string;
   imageUrl?: string | null;
   className?: string;
+  fallbackClassName?: string;
 }
 
-const UserAvatar: FC<UserAvatarProps> = ({ id, name, imageUrl, className = "h-9 w-9" }) => {
+const UserAvatar: FC<UserAvatarProps> = ({ id, name, imageUrl, className = "h-9 w-9", fallbackClassName }) => {
   const initials = name
     .split(" ")
     .map((word) => word[0])
@@ -24,7 +26,9 @@ const UserAvatar: FC<UserAvatarProps> = ({ id, name, imageUrl, className = "h-9 
         {imageUrl ? (
           <Image src={imageUrl} alt={name} className="rounded-full object-cover" width={36} height={36} quality={100} />
         ) : (
-          <AvatarFallback className="primary-gradient font-space-grotesk font-bold tracking-wider text-white">
+          <AvatarFallback
+            className={cn("primary-gradient font-space-grotesk font-bold tracking-wider text-white", fallbackClassName)}
+          >
             {initials}
           </AvatarFallback>
         )}
