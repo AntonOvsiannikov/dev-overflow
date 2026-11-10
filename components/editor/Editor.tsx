@@ -29,8 +29,8 @@ import {
   codeMirrorPlugin,
   diffSourcePlugin,
 } from "@mdxeditor/editor";
-import "./styles.css";
 import "@mdxeditor/editor/style.css";
+import "./styles.css";
 import { basicDark } from "cm6-theme-basic-dark";
 import { useTheme } from "next-themes";
 
@@ -48,7 +48,7 @@ const Editor: FC<EditorProps> = ({ editorRef, value, onChange, ...props }: Edito
     <MDXEditor
       key={resolvedTheme}
       markdown={value}
-      className="background_light800_dark200 light-border-2 markdown-editor dark-editor grid w-full border"
+      className="background-light800_dark200 light-border-2 markdown-editor dark-editor grid w-full border"
       onChange={onChange}
       plugins={[
         headingsPlugin(),
