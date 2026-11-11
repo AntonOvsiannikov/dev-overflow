@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
-import { DEFAULT_ERROR } from "@/const/states";
+import { DEFAULT_ERROR, DEFAULT_EMPTY } from "@/const/states";
 
 interface Error {
   message: string;
