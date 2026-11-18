@@ -10,9 +10,11 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@ai-sdk/openai": "^4.0.121",
     "@hookform/resolvers": "^5.4.0",
     "@mdxeditor/editor": "^4.2.0",
     "@radix-ui/react-label": "^2.1.11",
+    "ai": "^7.0.176",
     "bcryptjs": "^3.0.3",
     "bright": "^1.0.0",
     "class-variance-authority": "^0.7.1",

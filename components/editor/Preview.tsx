@@ -16,7 +16,7 @@ const Preview: FC<PreviewProps> = ({ content }) => {
   const formattedContent = content.replace(/\\/g, "").replace(/&#x20;/g, "");
 
   return (
-    <section className="markdown prose grid wrap-break-word">
+    <section className="markdown prose grid wrap-anywhere">
       <MDXRemote
         source={formattedContent}
         components={{
